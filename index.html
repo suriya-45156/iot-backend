@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Edge Machine Health Monitoring</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="brand-icon"><i class="fas fa-microchip"></i></div>
+                <div>
+                    <h1>IoT Edge Health Monitor</h1>
+                    <p>Real-time machine monitoring and predictive maintenance for Industry 4.0 factories.</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#features">Features</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-section container" id="overview">
+            <div class="hero-copy">
+                <p class="eyebrow">Industry 4.0 Edge Intelligence</p>
+                <h2>IoT-Driven Edge Computing Framework for Machine Health Monitoring</h2>
+                <p>Monitor temperature, vibration, humidity, and motor current in real time. The edge device analyzes incoming sensor data to predict failures before they occur.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="toggleAuto()">Start Live Monitoring</button>
+                    <button class="btn btn-secondary" onclick="generateAlertSample()">Trigger Alert</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="status-card">
+                    <h3>Edge Device Status</h3>
+                    <div class="status-pill status-online"><i class="fas fa-wifi"></i> Connected</div>
+                    <div class="metric-row">
+                        <span>Last packet</span>
+                        <strong id="lastPacket">-- sec ago</strong>
+                    </div>
+                    <div class="metric-row">
+                        <span>Prediction confidence</span>
+                        <strong id="predictionConfidence">--%</strong>
+                    </div>
+                    <div class="metric-row">
+                        <span>Maintenance status</span>
+                        <strong id="maintenanceStatus">Idle</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-summary container" id="features">
+            <div class="feature-card">
+                <i class="fas fa-thermometer-half"></i>
+                <h4>Temperature Monitoring</h4>
+                <p>Track machine heating patterns and identify overheating events early.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-vibrate"></i>
+                <h4>Vibration Analytics</h4>
+                <p>Analyze vibration signatures to detect imbalance, wear, or misalignment.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-tint"></i>
+                <h4>Humidity Control</h4>
+                <p>Monitor environmental humidity impacting insulation and sensor accuracy.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-charging-station"></i>
+                <h4>Motor Current Sensing</h4>
+                <p>Measure current draw for motor stress, load spikes, and electrical faults.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-brain"></i>
+                <h4>Predictive Intelligence</h4>
+                <p>Edge analytics uses live data to forecast machine failures before downtime.</p>
+            </div>
+        </section>
+
+        <section class="dashboard-section container" id="dashboard">
+            <div class="dashboard-grid">
+                <div class="sensor-card sensor-temp">
+                    <div class="sensor-header">
+                        <span>Temperature</span>
+                        <i class="fas fa-thermometer-three-quarters"></i>
+                    </div>
+                    <div class="sensor-value"><strong id="temperatureValue">--</strong><span>°C</span></div>
+                    <div class="sensor-footnote">Optimal range: 35°C - 68°C</div>
+                </div>
+                <div class="sensor-card sensor-vibe">
+                    <div class="sensor-header">
+                        <span>Vibration</span>
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <div class="sensor-value"><strong id="vibrationValue">--</strong><span>mm/s</span></div>
+                    <div class="sensor-footnote">Threshold: 0 - 7 mm/s</div>
+                </div>
+                <div class="sensor-card sensor-humid">
+                    <div class="sensor-header">
+                        <span>Humidity</span>
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="sensor-value"><strong id="humidityValue">--</strong><span>%</span></div>
+                    <div class="sensor-footnote">Safe range: 25% - 65%</div>
+                </div>
+                <div class="sensor-card sensor-current">
+                    <div class="sensor-header">
+                        <span>Motor Current</span>
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="sensor-value"><strong id="currentValue">--</strong><span>A</span></div>
+                    <div class="sensor-footnote">Target load: 8A - 15A</div>
+                </div>
+            </div>
+
+            <div class="analytics-panel">
+                <div class="analytics-header">
+                    <div>
+                        <h3>Machine Health & Prediction</h3>
+                        <p>Edge device calculates failure probability and maintenance urgency using multi-sensor data.</p>
+                    </div>
+                    <div class="health-status" id="healthStatus">--</div>
+                </div>
+                <div class="chart-card">
+                    <canvas id="trendChart" width="900" height="320"></canvas>
+                </div>
+                <div class="analytics-summary">
+                    <div>
+                        <span>Failure Probability</span>
+                        <strong id="failureProbability">--%</strong>
+                    </div>
+                    <div>
+                        <span>Edge Alerts</span>
+                        <strong id="alertCount">0</strong>
+                    </div>
+                    <div>
+                        <span>Maintenance Recommendation</span>
+                        <strong id="maintenanceAdvice">--</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="events-section container">
+            <div class="events-header">
+                <h3>Recent Sensor Events</h3>
+                <p>Live edge events and predictive warnings generated by the monitoring framework.</p>
+            </div>
+            <ul id="eventFeed" class="event-feed">
+                <li class="event-empty">No events generated yet.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>&copy; 2026 EdgeIQ Labs. Real-time machine health monitoring for smart factories.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
